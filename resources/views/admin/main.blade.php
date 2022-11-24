@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Mazer Admin Dashboard</title>
+  <title>{{$title}}</title>
 
-  <link rel="stylesheet" href="assets/css/main/app.css" />
-  <link rel="stylesheet" href="assets/css/main/app-dark.css" />
-  <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon" />
-  <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="{{asset('assets/css/main/app.css')}}" />
+  <link rel="stylesheet" href="{{asset('assets/css/main/app-dark.css')}}" />
+  <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.svg')}}" type="image/x-icon" />
+  <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.png')}}" type="image/png" />
   <script src="https://kit.fontawesome.com/4bb3780fe1.js" crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="assets/css/shared/iconly.css" />
+  <link rel="stylesheet" href="{{asset('assets/css/shared/iconly.css')}}" />
+  <link rel="stylesheet" href="{{asset('assets/extensions/quill/quill.snow.css')}}" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <div class="sidebar-header position-relative">
           <div class="d-flex justify-content-between align-items-center">
             <div class="logo">
-              <img src="assets/images/logo/logo.svg" alt="Logo" srcset="" />
+              <img src="{{asset('assets/images/logo/logo.svg')}}" alt="Logo" srcset="" />
             </div>
             <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -58,18 +58,18 @@
         </div>
         <div class="sidebar-menu">
           <ul class="menu">
-            <li class="sidebar-item active">
-              <a href="{{url('/')}}" class="sidebar-link">
-                <i class="fa-solid fa-gauge"></i>
-                <span>Dashboard</span>
+            <li class="sidebar-item {{Request::is('/') ? 'active' : ''}}"">
+              <a href=" {{url('/')}}" class="sidebar-link">
+              <i class="fa-solid fa-gauge"></i>
+              <span>Dashboard</span>
               </a>
             </li>
             <li class="sidebar-title">Manage Content</li>
 
-            <li class="sidebar-item">
-              <a href="application-email.html" class="sidebar-link">
-                <i class="fa-solid fa-users"></i>
-                <span>Artist</span>
+            <li class="sidebar-item {{Request::is('artist') ? 'active' : ''}}"">
+              <a href=" {{url('artist')}}" class="sidebar-link">
+              <i class="fa-solid fa-users"></i>
+              <span>Artist</span>
               </a>
             </li>
 
@@ -100,12 +100,17 @@
       @yield('content-admin')
     </div>
   </div>
-  <script src="assets/js/bootstrap.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="{{asset('assets/js/bootstrap.js')}}"></script>
+  <script src="{{asset('assets/js/app.js')}}"></script>
 
   <!-- Need: Apexcharts -->
-  <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/js/pages/dashboard.js"></script>
+  <script src="{{asset('assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{asset('assets/extensions/jquery/jquery.min.js')}}"></script>
+  <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+  <script src="{{asset('assets/js/pages/datatables.js')}}"></script>
+  <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
+  <script src="{{asset('assets/extensions/quill/quill.min.js')}}"></script>
+  <script src="{{asset('assets/js/pages/quill.js')}}"></script>
 </body>
 
 </html>

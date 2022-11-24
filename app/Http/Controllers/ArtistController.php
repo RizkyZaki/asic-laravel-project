@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ArtistController extends Controller
@@ -14,7 +15,10 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.artists.index', [
+            'title' => "ASIC ADMIN | List Artist",
+            'artists' => Artist::all()
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.artists.create', [
+            'title' => "ASIC ADMIN | Add Artist",
+        ]);
     }
 
     /**
@@ -35,7 +41,16 @@ class ArtistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => "required",
+            'about' => 'required',
+            'image' => 'required|image|file'
+        ]);
+        $validatedData['slug'] = Str::slug($request->input('name'), '-');
+        $validatedData['image'] = $request->file('image')->store('image');
+        Artist::create($validatedData);
+
+        return redirect('artist')->with('success', 'data berhasil dibuat');
     }
 
     /**
