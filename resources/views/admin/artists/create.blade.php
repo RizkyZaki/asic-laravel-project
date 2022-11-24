@@ -15,9 +15,9 @@
     <div class="col-md-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{{url('artist')}}">listData</a></li>
           <li class="breadcrumb-item active" aria-current="page">
-            Data Artist
+            Add Artist
           </li>
         </ol>
       </nav>
@@ -37,7 +37,7 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name Artists</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"
-              aria-describedby="emailHelp" name="name">
+              aria-describedby="emailHelp" name="name" value="{{old('name')}}">
             @error('name')
             <div class="invalid-feedback">
               {{ $message }}
@@ -46,7 +46,8 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Photo</label>
-            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image" />
+            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image"
+              value="{{old('image')}}" />
             @error('image')
             <div class="invalid-feedback">
               {{ $message }}
@@ -55,7 +56,8 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Description about the artist</label>
-            <input type="text" name="about" id="">
+            <input type="hidden" name="about" id="about" value="{{old('about')}}">
+            <trix-editor input="about"></trix-editor>
             @error('about')
             <div class="invalid-feedback">
               {{ $message }}

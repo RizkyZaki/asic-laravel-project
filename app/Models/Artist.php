@@ -10,4 +10,9 @@ class Artist extends Model
     use HasFactory;
     protected $table = 'artists';
     protected $guarded = ['id'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

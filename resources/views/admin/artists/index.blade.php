@@ -29,14 +29,14 @@
       <div class="card-header fw-bolder d-flex justify-content-between border-bottom">
         <h4>List Artists</h4>
         <a class="btn btn-primary" href="{{url('artist/create')}}"><i class="fa-solid fa-plus"></i> Add Artist</a>
-        @if(session()->has('berhasil'))
+      </div>
+      <div class="card-body mt-5">
+        @if(session()->has('success'))
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
           <strong>{{session('success')}}</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-      </div>
-      <div class="card-body mt-5">
         <table class="table table-striped" id="table1">
           <thead>
             <tr>
@@ -54,12 +54,17 @@
             <tr>
               <td>{{$nomor++}}</td>
               <td>
-                <img src="{{asset('storage/'. $item->image)}}" class="img-fluid" alt="">
+                <img src="{{asset('storage/'. $item->image)}}" class="img-table" alt="">
               </td>
               <td>{{$item->name}}</td>
               <td>
-                <button class="btn badge bg-success"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button class="btn badge bg-danger"><i class="fa-solid fa-trash"></i></button>
+                <a href={{url('artist/'. $item->slug . '/edit')}} class="btn badge bg-success"><i
+                    class="fa-solid fa-pen-to-square"></i></a>
+                <form action="artist/{{$item->slug}}" method="POST" class="d-inline">
+                  @method('delete')
+                  @csrf
+                  <button class="btn badge bg-danger" role="button"><i class="fa-solid fa-trash"></i></button>
+                </form>
               </td>
             </tr>
             @endforeach

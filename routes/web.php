@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return view('admin.dashboard', [
+        'title' => "ASIC ADMIN | Dashboard"
+    ]);
 });
 
 Route::resource('artist', ArtistController::class);

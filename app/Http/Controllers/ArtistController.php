@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArtistController extends Controller
 {
@@ -42,7 +43,7 @@ class ArtistController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => "required",
+            'name' => "required|unique:artists",
             'about' => 'required',
             'image' => 'required|image|file'
         ]);
@@ -72,7 +73,10 @@ class ArtistController extends Controller
      */
     public function edit(Artist $artist)
     {
-        //
+        return view('admin.artists.update', [
+            'title' => 'ASIC ADMIN | Edit',
+            'artist' => $artist,
+        ]);
     }
 
     /**
@@ -84,7 +88,32 @@ class ArtistController extends Controller
      */
     public function update(Request $request, Artist $artist)
     {
-        //
+        $rules = [
+            // 'judul' => 'required|unique:materi',
+            // 'slug' => 'required',
+            'about' => 'required',
+            'image' => 'image|file',
+        ];
+
+        if ($request->name != $artist->name) {
+            $rules['name'] = 'required|unique:artists';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        $validatedData['slug'] = Str::slug($request->input('name'), '-');
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('image');
+        }
+
+        // ddd($validatedData);
+
+        Artist::where('id', $artist->id)->update($validatedData);
+
+        return redirect('artist')->with('success', 'Data Berhasil diubah');
     }
 
     /**
@@ -95,6 +124,10 @@ class ArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
-        //
+        if ($artist->image) {
+            Storage::delete($artist->image);
+        }
+        Artist::destroy($artist->id);
+        return redirect('artist')->with('success', 'data berhasil dihapus');
     }
 }

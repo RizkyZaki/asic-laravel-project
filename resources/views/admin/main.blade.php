@@ -7,12 +7,20 @@
   <title>{{$title}}</title>
 
   <link rel="stylesheet" href="{{asset('assets/css/main/app.css')}}" />
+  <link rel="stylesheet" href="{{asset('assets/css/main/trix.css')}}" />
   <link rel="stylesheet" href="{{asset('assets/css/main/app-dark.css')}}" />
   <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.svg')}}" type="image/x-icon" />
   <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.png')}}" type="image/png" />
   <script src="https://kit.fontawesome.com/4bb3780fe1.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{asset('assets/css/shared/iconly.css')}}" />
   <link rel="stylesheet" href="{{asset('assets/extensions/quill/quill.snow.css')}}" />
+  <style>
+    .img-table {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
@@ -102,6 +110,7 @@
   </div>
   <script src="{{asset('assets/js/bootstrap.js')}}"></script>
   <script src="{{asset('assets/js/app.js')}}"></script>
+  <script src="{{asset('assets/js/trix.js')}}"></script>
 
   <!-- Need: Apexcharts -->
   <script src="{{asset('assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
