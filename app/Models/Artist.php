@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Album;
 
 class Artist extends Model
 {
@@ -14,5 +15,10 @@ class Artist extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function album()
+    {
+        return $this->hasMany(Album::class, 'id_artist');
     }
 }

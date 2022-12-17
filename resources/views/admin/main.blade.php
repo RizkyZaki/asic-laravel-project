@@ -66,23 +66,23 @@
         </div>
         <div class="sidebar-menu">
           <ul class="menu">
-            <li class="sidebar-item {{Request::is('/') ? 'active' : ''}}"">
+            <li class="sidebar-item {{Request::is('/') ? 'active' : ''}}">
               <a href=" {{url('/')}}" class="sidebar-link">
-              <i class="fa-solid fa-gauge"></i>
-              <span>Dashboard</span>
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
               </a>
             </li>
             <li class="sidebar-title">Manage Content</li>
 
-            <li class="sidebar-item {{Request::is('artist') ? 'active' : ''}}"">
+            <li class="sidebar-item {{Request::is('artist') ? 'active' : ''}}">
               <a href=" {{url('artist')}}" class="sidebar-link">
-              <i class="fa-solid fa-users"></i>
-              <span>Artist</span>
+                <i class="fa-solid fa-users"></i>
+                <span>Artist</span>
               </a>
             </li>
 
-            <li class="sidebar-item">
-              <a href="application-chat.html" class="sidebar-link">
+            <li class="sidebar-item {{Request::is('album') ? 'active' : ''}}">
+              <a href="{{url('album')}}" class="sidebar-link">
                 <i class="fa-solid fa-record-vinyl"></i>
                 <span>Album</span>
               </a>
@@ -107,6 +107,9 @@
     <div id="main">
       @yield('content-admin')
     </div>
+    <footer>
+      <p class="text-center">ASIC PROJECT</p>
+    </footer>
   </div>
   <script src="{{asset('assets/js/bootstrap.js')}}"></script>
   <script src="{{asset('assets/js/app.js')}}"></script>

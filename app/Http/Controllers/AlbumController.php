@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -14,7 +15,10 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.albums.index', [
+            'title' => "ASIC ADMIN | List Album",
+            'albums' => Album::all()
+        ]);
     }
 
     /**
@@ -24,7 +28,10 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.albums.create', [
+            'title' => "ASIC ADMIN | List Album",
+            'artist' => Artist::all()
+        ]);
     }
 
     /**
