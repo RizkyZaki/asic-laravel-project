@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use Illuminate\Support\Str;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,19 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => "required",
+            'id_artist' => "required",
+            'release_date' => 'required',
+            'description' => 'required',
+            'total_track' => 'required',
+            'cover' => 'required|image|file'
+        ]);
+        $validatedData['slug'] = Str::slug($request->input('title'), '-');
+        $validatedData['cover'] = $request->file('cover')->store('image');
+        Album::create($validatedData);
+
+        return redirect('album')->with('success', 'data berhasil dibuat');
     }
 
     /**

@@ -5,7 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{$title}}</title>
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
   <link rel="stylesheet" href="{{asset('assets/css/main/app.css')}}" />
   <link rel="stylesheet" href="{{asset('assets/css/main/trix.css')}}" />
   <link rel="stylesheet" href="{{asset('assets/css/main/app-dark.css')}}" />
@@ -88,8 +90,8 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
-              <a href="application-gallery.html" class="sidebar-link">
+            <li class="sidebar-item {{Request::is('song') ? 'active' : ''}}">
+              <a href="{{url('song')}}" class="sidebar-link">
                 <i class="fa-solid fa-music"></i>
                 <span>Songs</span>
               </a>
@@ -123,6 +125,23 @@
   <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
   <script src="{{asset('assets/extensions/quill/quill.min.js')}}"></script>
   <script src="{{asset('assets/js/pages/quill.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('#inputGroupSelect01').select2({
+            placeholder: 'Pilih Opsi',
+            theme: "bootstrap-5",
+            allowClear: true
+        });
+    });
+    $(document).ready(function() {
+        $('#inputGroupSelect02').select2({
+            placeholder: 'Pilih Opsi',
+            theme: "bootstrap-5",
+            allowClear: true
+        });
+    });
+  </script>
 </body>
 
 </html>

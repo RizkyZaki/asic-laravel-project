@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
+use App\Models\Artist;
+use Illuminate\Support\Str;
 use App\Models\Song;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,10 @@ class SongController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.songs.index', [
+            'title' => "ASIC ADMIN | List Album",
+            'songs' => Song::all()
+        ]);
     }
 
     /**
@@ -24,7 +30,11 @@ class SongController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.songs.create', [
+            'title' => "ASIC ADMIN | Create",
+            'artist' => Artist::all(),
+            'albums' => Album::all(),
+        ]);
     }
 
     /**
@@ -35,7 +45,18 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => "required",
+            'id_artist' => "required",
+            'id_album' => "required",
+            'credits' => 'required',
+            'lyrics' => 'required',
+            'duration' => 'required',
+        ]);
+        $validatedData['slug'] = Str::slug($request->input('title'), '-');
+        Song::create($validatedData);
+
+        return redirect('song')->with('success', 'data berhasil dibuat');
     }
 
     /**

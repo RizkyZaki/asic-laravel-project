@@ -23,3 +23,4 @@ Route::get('/', function () {
 
 Route::resource('artist', ArtistController::class);
 Route::resource('album', AlbumController::class);
+Route::resource('song', AlbumController::class);

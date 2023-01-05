@@ -32,13 +32,12 @@
         <h4>Add Album</h4>
       </div>
       <div class="card-body mt-5">
-        <form action="{{url('artist')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('album')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="mb-3">
             <label class="form-label" for="category">Artist</label>
             <select class="form-select @error('id_artist') is-invalid @enderror" id="inputGroupSelect01"
               name="id_artist">
-              <option>-- Pilih --</option>
               @foreach ($artist as $a)
               <option value="{{$a->id}}">{{ $a->name}}</option>
               @endforeach
@@ -71,7 +70,7 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Description about the Album</label>
-            <input type="hidden" name="about" id="description" value="{{old('description')}}">
+            <input type="hidden" name="description" id="description" value="{{old('description')}}">
             <trix-editor input="description"></trix-editor>
             @error('description')
             <div class="invalid-feedback">

@@ -57,7 +57,7 @@
               <td>
                 {{$item->title}}
               </td>
-              <td>{{$item->id_artist}}</td>
+              <td>{{$item->artist->name}}</td>
               <td>{{$item->release_date}}</td>
               <td>
                 <a href={{url('album/'. $item->slug . '/edit')}} class="btn badge bg-success"><i
