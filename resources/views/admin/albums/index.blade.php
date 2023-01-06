@@ -42,7 +42,7 @@
             <tr>
               <th>No.</th>
               <th>Title</th>
-              <th>Name Artist</th>
+              <th>Artist</th>
               <th>Release</th>
               <th>Action</th>
             </tr>

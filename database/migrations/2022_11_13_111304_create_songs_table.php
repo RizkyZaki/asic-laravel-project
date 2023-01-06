@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('id_album');
             $table->string('title');
             $table->string('slug');
-            $table->string('credits');
+            $table->text('credits');
             $table->text('lyrics');
             $table->string('duration');
             $table->timestamps();

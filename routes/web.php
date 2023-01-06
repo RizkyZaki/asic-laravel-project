@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,4 @@ Route::get('/', function () {
 
 Route::resource('artist', ArtistController::class);
 Route::resource('album', AlbumController::class);
-Route::resource('song', AlbumController::class);
+Route::resource('song', SongController::class);

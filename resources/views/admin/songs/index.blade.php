@@ -16,7 +16,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item active" aria-current="page">
-            Data Album
+            Data Song
           </li>
         </ol>
       </nav>
@@ -42,7 +42,7 @@
             <tr>
               <th>No.</th>
               <th>Title</th>
-              <th>Name Artist</th>
+              <th>Artist</th>
               <th>Album</th>
               <th>Action</th>
             </tr>
@@ -62,6 +62,8 @@
               <td>
                 <a href={{url('album/'. $item->slug . '/edit')}} class="btn badge bg-success"><i
                     class="fa-solid fa-pen-to-square"></i></a>
+                <a href={{url('song/'. $item->slug)}} class="btn badge bg-primary"><i
+                    class="fa-solid fa-ellipsis"></i></a>
                 <form action="album/{{$item->slug}}" method="POST" class="d-inline">
                   @method('delete')
                   @csrf

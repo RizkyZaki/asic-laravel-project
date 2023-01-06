@@ -7,6 +7,7 @@ use App\Models\Artist;
 use Illuminate\Support\Str;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\Internal\ReturnTypeContract;
 
 class SongController extends Controller
 {
@@ -18,7 +19,7 @@ class SongController extends Controller
     public function index()
     {
         return view('admin.songs.index', [
-            'title' => "ASIC ADMIN | List Album",
+            'title' => "ASIC ADMIN | List Song",
             'songs' => Song::all()
         ]);
     }
@@ -33,7 +34,7 @@ class SongController extends Controller
         return view('admin.songs.create', [
             'title' => "ASIC ADMIN | Create",
             'artist' => Artist::all(),
-            'albums' => Album::all(),
+            'album' => Album::all(),
         ]);
     }
 
@@ -67,7 +68,10 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
-        //
+        return view('admin.songs.detail', [
+            'title' => "ASIC ADMIN | Detail Song",
+            'song' => $song
+        ]);
     }
 
     /**

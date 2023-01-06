@@ -73,7 +73,7 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Duration</label>
-            <input class="form-control @error('duration') is-invalid @enderror" type="number" id="formFile"
+            <input class="form-control @error('duration') is-invalid @enderror" type="text" id="formFile"
               name="duration" value="{{old('duration')}}" />
             @error('duration')
             <div class="invalid-feedback">
@@ -84,7 +84,7 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Credits</label>
             <input type="hidden" name="credits" id="credits" value="{{old('credits')}}">
-            <trix-editor input="credits"></trix-editor>
+            <trix-editor input="credits" class="@error('credits') is-invalid @enderror"></trix-editor>
             @error('credits')
             <div class="invalid-feedback">
               {{ $message }}
@@ -94,7 +94,7 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Lyrics</label>
             <input type="hidden" name="lyrics" id="lyrics" value="{{old('lyrics')}}">
-            <trix-editor input="lyrics"></trix-editor>
+            <trix-editor input="lyrics" class="@error('lyrics') is-invalid @enderror"></trix-editor>
             @error('lyrics')
             <div class="invalid-feedback">
               {{ $message }}

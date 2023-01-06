@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->date('release_date');
-            $table->string('description');
+            $table->text('description');
             $table->integer('total_track');
             $table->string('cover');
             $table->timestamps();
